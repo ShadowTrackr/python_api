@@ -96,6 +96,21 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
+    def get_graph(self, delay=None, name=None):
+        postdata = {"api_key": self.api_key}
+        if delay:
+            postdata["delay"] = delay
+        if name:
+            postdata["content"] = name
+        response = requests.post(self.base_url + "graph", data=json.dumps(postdata).encode('utf-8'))
+        if response.status_code == 200:
+            return response.content
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
     def get_assets(self):
         postdata = {"api_key": self.api_key}
         response = requests.post(self.base_url + "assets", data=json.dumps(postdata).encode('utf-8'))
