@@ -51,6 +51,8 @@ Get a PNG version of a network graph::
 
     st = ShadowTrackr(api_key=API_KEY)
     img = Image.open(BytesIO(st.get_graph(name="Attack surface")))
+    img.save("Attack Surface Graph.png", "PNG")
+
 
 You can find the complete API documentation at https://shadowtrackr.com/docs/api
 

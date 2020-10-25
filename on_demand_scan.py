@@ -1,9 +1,12 @@
 from shadowtrackr import ShadowTrackr
 from time import sleep
+from PIL import Image
+from io import BytesIO
 
 
-API_KEY = "e03601b4f80b5439dfd73638e2a15957"
-ADMINCODE = "a4b873208f3e43a9624cfc16b55a8350"
+
+API_KEY = "ddb41951a4d2c61df93346fa9037f029"
+ADMINCODE = "87687bdb86ad1b1581ab39f9c198cbd4"
 
 st = ShadowTrackr(api_key=API_KEY)
 
@@ -11,28 +14,35 @@ st = ShadowTrackr(api_key=API_KEY)
 st.delete_all_data(admincode=ADMINCODE)
 
 # add new assets
-
-assets = ["politie.nl", "shadowtrackr.com"]
+assets = ["shadowtrackr.com"]
 st.add_assets(assets)
 
+# allow some time to discover assets
 sleep(15*60)
+
+# Instead, you could also use the popcorn method:
+# periodically (say, each 60s) you call st.get_assets()
+# if the number of assets stops changing your scan is done.
+
 
 hosts = st.get_hosts()
 websites = st.get_websites()
 certificates = st.get_certificates()
 suggestions = st.get_suggestions()
+dns = st.get_dns()
 
 print("Initial scan on ShadowTrackr found: ")
-print("Hosts: " + str(len(hosts)))
-print("Websites: " + str(len(hosts)))
-print("Certificates: " + str(len(certificates)))
+print("Hosts (should be 5): " + str(len(hosts)))
+print("Websites (should be 6): " + str(len(websites)))
+print("Certificates (should be 2): " + str(len(certificates)))
+print("Dns records (should be 2): " + str(len(dns)))
 
-# show all certificate problems found:
-for c in websites:
-    if c["problems"]:
-        print(c["url"] + " has problems:")
-        for p in c["problems"]:
-            print(p)
-        print("\n")
+# now get your Attack Surface Graph as a png file
+img = Image.open(BytesIO(st.get_graph()))
+img.save("Attack Surface Graph.png", "PNG")
 
+# how to ignore urls
+# the subdomain flag make sure any current and newly found subdomain will be ignored too
+urls = ["shadowtrackr.com"]
+st.ignore_urls(urls, ignore_subdomains=True)
 
