@@ -32,10 +32,10 @@ suggestions = st.get_suggestions()
 dns = st.get_dns()
 
 print("Initial scan on ShadowTrackr found: ")
-print("Hosts (should be 5): " + str(len(hosts)))
-print("Websites (should be 6): " + str(len(websites)))
-print("Certificates (should be 2): " + str(len(certificates)))
-print("Dns records (should be 2): " + str(len(dns)))
+print("Hosts (should be 4): " + str(len(hosts)))
+print("Websites (should be 8): " + str(len(websites)))
+print("Certificates (should be 4): " + str(len(certificates)))
+print("Dns records (should be 15): " + str(len(dns)))
 
 # now get your Attack Surface Graph as a png file
 img = Image.open(BytesIO(st.get_graph()))
@@ -45,4 +45,3 @@ img.save("Attack Surface Graph.png", "PNG")
 # the subdomain flag make sure any current and newly found subdomain will be ignored too
 urls = ["shadowtrackr.com"]
 st.ignore_urls(urls, ignore_subdomains=True)
-

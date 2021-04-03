@@ -61,6 +61,18 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
+    def get_phishy_domains(self, domain=None):
+        postdata = {"api_key": self.api_key}
+        if domain:
+            postdata["domain"] = domain
+        response = requests.post(self.base_url + "phishy_domains", data=json.dumps(postdata).encode('utf-8'))
+        print(response.text)
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
     def get_suggestions(self):
         postdata = {"api_key": self.api_key}
         response = requests.post(self.base_url + "suggestions", data=json.dumps(postdata).encode('utf-8'))
@@ -90,6 +102,35 @@ class ShadowTrackr(object):
         if record_type:
             postdata["record_type"] = record_type
         response = requests.post(self.base_url + "dns", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def get_urls(self, url=None):
+        postdata = {"api_key": self.api_key}
+        if url:
+            postdata["url"] = url
+        response = requests.post(self.base_url + "urls", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def get_cloud_providers(self):
+        postdata = {"api_key": self.api_key}
+        response = requests.post(self.base_url + "cloud_providers", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def get_remote_login_services(self):
+        postdata = {"api_key": self.api_key}
+        response = requests.post(self.base_url + "remote_login_services", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
             raise Exception(results['error'])
@@ -142,6 +183,24 @@ class ShadowTrackr(object):
     def delete_all_data(self, admincode):
         postdata = {"api_key": self.api_key, "admincode": admincode}
         response = requests.post(self.base_url + "delete_all_my_data", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def ignore_urls(self, urls, ignore_subdomains=True):
+        postdata = {'api_key': self.api_key, "urls": urls, "ignore_subdomains": ignore_subdomains}
+        response = requests.post(self.base_url + "ignore_urls", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def unignore_urls(self, urls, unignore_subdomains=True):
+        postdata = {'api_key': self.api_key, "urls": urls, "unignore_subdomains": unignore_subdomains}
+        response = requests.post(self.base_url + "unignore_urls", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
             raise Exception(results['error'])
