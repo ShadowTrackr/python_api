@@ -31,7 +31,7 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def get_websites(self, ip=None, url=None, domain=None):
+    def get_websites(self, ip=None, url=None, domain=None, software=None):
         postdata = {"api_key": self.api_key}
         if ip:
             postdata["ip"] = ip
@@ -39,6 +39,8 @@ class ShadowTrackr(object):
             postdata["url"] = url
         if domain:
             postdata["domain"] = domain
+        if software:
+            postdata["software"] = software
         response = requests.post(self.base_url + "websites", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
@@ -201,6 +203,15 @@ class ShadowTrackr(object):
     def unignore_urls(self, urls, unignore_subdomains=True):
         postdata = {'api_key': self.api_key, "urls": urls, "unignore_subdomains": unignore_subdomains}
         response = requests.post(self.base_url + "unignore_urls", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def get_software(self):
+        postdata = {"api_key": self.api_key}
+        response = requests.post(self.base_url + "software", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
             raise Exception(results['error'])
