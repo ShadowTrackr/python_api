@@ -5,7 +5,7 @@ import json
 class ShadowTrackr(object):
     def __init__(self, api_key):
         self.api_key = api_key
-        self.base_url = "https://shadowtrackr.com/api/v2/"
+        self.base_url = "https://shadowtrackr.com/api/v3/"
 
     def get_timeline(self, update=True, start=None, stop=None, ):
         postdata = {"api_key": self.api_key, "update": update}
@@ -20,10 +20,12 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def get_hosts(self, ip=None):
+    def get_hosts(self, ip=None, full=None):
         postdata = {"api_key": self.api_key}
         if ip:
             postdata["ip"] = ip
+        if full:
+            postdata["full"] = True
         response = requests.post(self.base_url + "hosts", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
@@ -31,7 +33,7 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def get_websites(self, ip=None, url=None, domain=None, software=None):
+    def get_websites(self, ip=None, url=None, domain=None, software=None, full=None):
         postdata = {"api_key": self.api_key}
         if ip:
             postdata["ip"] = ip
@@ -41,6 +43,8 @@ class ShadowTrackr(object):
             postdata["domain"] = domain
         if software:
             postdata["software"] = software
+        if full:
+            postdata["full"] = True
         response = requests.post(self.base_url + "websites", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
@@ -48,7 +52,7 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def get_certificates(self, ip=None, url=None, domain=None):
+    def get_certificates(self, ip=None, url=None, domain=None, full=None):
         postdata = {"api_key": self.api_key}
         if ip:
             postdata["ip"] = ip
@@ -56,6 +60,8 @@ class ShadowTrackr(object):
             postdata["url"] = url
         if domain:
             postdata["domain"] = domain
+        if full:
+            postdata["full"] = True
         response = requests.post(self.base_url + "certificates", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
@@ -68,7 +74,17 @@ class ShadowTrackr(object):
         if domain:
             postdata["domain"] = domain
         response = requests.post(self.base_url + "phishy_domains", data=json.dumps(postdata).encode('utf-8'))
-        print(response.text)
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def get_exposed_email_addresses(self, email=None):
+        postdata = {"api_key": self.api_key}
+        if email:
+            postdata["email"] = email
+        response = requests.post(self.base_url + "exposed_email_addresses", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
             raise Exception(results['error'])
@@ -84,10 +100,12 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def get_whois(self, url=None):
+    def get_whois(self, url=None, full=None):
         postdata = {"api_key": self.api_key}
         if url:
             postdata["url"] = url
+        if full:
+            postdata["full"] = True
         response = requests.post(self.base_url + "whois", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
@@ -95,7 +113,7 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def get_dns(self, url=None, content=None, record_type=None):
+    def get_dns(self, url=None, content=None, record_type=None, full=None):
         postdata = {"api_key": self.api_key}
         if url:
             postdata["url"] = url
@@ -103,6 +121,8 @@ class ShadowTrackr(object):
             postdata["content"] = content
         if record_type:
             postdata["record_type"] = record_type
+        if full:
+            postdata["full"] = True
         response = requests.post(self.base_url + "dns", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
@@ -115,6 +135,28 @@ class ShadowTrackr(object):
         if url:
             postdata["url"] = url
         response = requests.post(self.base_url + "urls", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def get_subnets(self, cidr=None):
+        postdata = {"api_key": self.api_key}
+        if cidr:
+            postdata["cidr"] = cidr
+        response = requests.post(self.base_url + "subnets", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def get_domains(self, domain=None):
+        postdata = {"api_key": self.api_key}
+        if domain:
+            postdata["domain"] = domain
+        response = requests.post(self.base_url + "domains", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
             raise Exception(results['error'])
@@ -212,6 +254,28 @@ class ShadowTrackr(object):
     def get_software(self):
         postdata = {"api_key": self.api_key}
         response = requests.post(self.base_url + "software", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def get_blacklisted_assets(self, ip=None, url=None):
+        postdata = {"api_key": self.api_key}
+        if ip:
+            postdata["ip"] = ip
+        if url:
+            postdata["url"] = url
+        response = requests.post(self.base_url + "blacklisted_assets", data=json.dumps(postdata).encode('utf-8'))
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def check_initial_scan_progress(self):
+        postdata = {"api_key": self.api_key}
+        response = requests.post(self.base_url + "initial_scan_progress", data=json.dumps(postdata).encode('utf-8'))
         results = json.loads(response.text)
         if results["error"]:
             raise Exception(results['error'])
