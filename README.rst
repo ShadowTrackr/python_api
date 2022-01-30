@@ -10,6 +10,7 @@ The API allows you to integrate ShadowTrackr with your other security tools. The
 More information:
 
 https://test.shadowtrackr.com/docs/2-Data-Model
+
 https://test.shadowtrackr.com/docs/3-Search-and-Queries
 
 Installation::
