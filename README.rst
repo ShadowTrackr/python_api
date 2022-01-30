@@ -27,46 +27,17 @@ Usage::
 
     st = ShadowTrackr(api_key=API_KEY)
 
-    d = st.query("index=hosts problem=yes earliest=-10d")
-    pprint(d)
+    certificate_issuers = st.query("index=certificates by issuer earliest=-10d")
+    pprint(certificate_issuers)
 
-Do an initial scan::
+    problem_hosts = st.query("index=hosts problem=yes earliest=-1m")
+    pprint(problem_hosts)
 
-    from shadowtrackr import ShadowTrackr
-    from time import sleep
+    hosts_with_rdp_open = st.query("index=hosts ports=3389")
+    pprint(hosts_with_rdp_open)
 
-    st = ShadowTrackr(api_key=API_KEY)
-
-    # add some assets as a starting point
-    assets = ["shadowtrackr.com", "vanschaik-ltd.com", "139.162.214.30"]
-    st.add_assets(assets)
-
-    # now give ST about 15 minutes for initial discovery
-    sleep(15*60)
-
-    # get your results
-    host = st.get_hosts()
-    websites = st.get_websites()
-    certificates = st.get_certificates()
-
-    # show all certificate problems found:
-    for c in certificates:
-        if c["problems"]:
-            print(c["url"] + " has problems:")
-            for p in c["problems"]:
-                print(p)
-            print("\n")
-
-Get a PNG version of a network graph::
-
-    from shadowtrackr import ShadowTrackr
-    from io import BytesIO
-    from PIL import Image
-    # note that you might have to do this first: pip install pillow
-
-    st = ShadowTrackr(api_key=API_KEY)
-    img = Image.open(BytesIO(st.get_graph(name="Attack surface")))
-    img.save("Attack Surface Graph.png", "PNG")
+    all_spf_records = st.query("index=dns rrtype=txt rrdata=\"*spf*\"")
+    pprint(all_spf_records)
 
 
 You can find the complete API documentation at https://shadowtrackr.com/docs/5-API
