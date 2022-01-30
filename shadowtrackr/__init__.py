@@ -285,7 +285,6 @@ class ShadowTrackr(object):
     def query(self, q):
         postdata = {"api_key": self.api_key, "q": q}
         response = requests.post(self.base_url + "query", data=json.dumps(postdata).encode('utf-8'))
-        print(response.text)
         results = json.loads(response.text)
         if results["error"]:
             raise Exception(results['error'])
