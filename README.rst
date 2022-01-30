@@ -39,6 +39,14 @@ Usage::
     all_spf_records = st.query("index=dns rrtype=txt rrdata=\"*spf*\"")
     pprint(all_spf_records)
 
+    websites_on_nginx = st.query("index=websites https_server=*nginx*")
+    pprint(websites_on_nginx)
+
+    good_certificates = st.query("index=certificates grade=A earliest=-1m")
+    pprint(good_certificates)
+
+    all_whois_records = st.query("index=whois")
+    pprint(all_whois_records)
 
 You can find the complete API documentation at https://shadowtrackr.com/docs/5-API
 
