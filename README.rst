@@ -3,9 +3,14 @@ ShadowTrackr API for Python
 
 ShadowTrackr is a service that discovers your online attack surface and displays it in a nice graph. Anything found will be monitored for security issues. You can enable notifications by email or push messages, or just ingest them in your SIEM.
 
-All changes to your hosts, websites, certificates, dns and whois records are logged and searchable. Additionally, you can set specific traps for keywords or events that you want to monitor, for instance a username appearing in leaked data on pastebin.
+All changes to your hosts, websites, certificates, dns and whois records are logged and searchable. Additionally, you can set specific alerts for keywords or events that you want to monitor, for instance a username appearing in leaked data on pastebin.
 
-The API allows you to integrate ShadowTrackr with your other security tools. This is a python package to simplify integration.
+The API allows you to integrate ShadowTrackr with your other security tools. There are multiple endpoints, but by far the easiest way to gets started is using serach queries. We support both Splunk SPL and Elastic Search (Lucene) syntax thatyou don't have to learn yet another new query language.
+
+More information:
+
+https://test.shadowtrackr.com/docs/2-Data-Model
+https://test.shadowtrackr.com/docs/3-Search-and-Queries
 
 Installation::
 
@@ -14,15 +19,24 @@ Installation::
 Usage::
 
     from shadowtrackr import ShadowTrackr
-    from time import sleep
+    from pprint import pprint
 
     # first, setup the api with your API key
     # you'll find it at: https://shadowtrackr.com/usr/settings?s=api
 
     st = ShadowTrackr(api_key=API_KEY)
 
-    # add some assets as a starting point
+    d = st.query("index=hosts problem=yes earliest=-10d")
+    pprint(d)
 
+Do an initial scan::
+
+    from shadowtrackr import ShadowTrackr
+    from time import sleep
+
+    st = ShadowTrackr(api_key=API_KEY)
+
+    # add some assets as a starting point
     assets = ["shadowtrackr.com", "vanschaik-ltd.com", "139.162.214.30"]
     st.add_assets(assets)
 
@@ -54,6 +68,6 @@ Get a PNG version of a network graph::
     img.save("Attack Surface Graph.png", "PNG")
 
 
-You can find the complete API documentation at https://shadowtrackr.com/docs/api
+You can find the complete API documentation at https://shadowtrackr.com/docs/5-API
 
 If you have any questions or requests, please send them here: https://shadowtrackr.com/support
