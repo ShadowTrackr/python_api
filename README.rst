@@ -48,6 +48,10 @@ Usage::
     all_whois_records = st.query("index=whois")
     pprint(all_whois_records)
 
+    If you need to use a proxy, you can set it like this:
+
+    st.set_proxy("10.0.0.1:8080")
+
 You can find the complete API documentation at https://shadowtrackr.com/docs/5-API
 
 If you have any questions or requests, please send them here: https://shadowtrackr.com/support
