@@ -9,8 +9,6 @@ class ShadowTrackr(object):
         self.proxies = {}
 
     def set_proxy(self, proxy):
-        print('in ' + proxy)
-
         if proxy.startswith("http://"):
             proxy = proxy[7:]
         elif proxy.startswith("https://"):
