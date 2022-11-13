@@ -43,9 +43,6 @@ print("Websites (should be >= 6 ): " + str(len(websites)))
 print("Certificates (should be >= 4): " + str(len(certificates)))
 print("Dns records (should be >= 15): " + str(len(dns)))
 
-# now get your Attack Surface Graph as a png file
-img = Image.open(BytesIO(st.get_graph()))
-img.save("Attack Surface Graph.png", "PNG")
 
 # You can ignore urls. Some will keep getting discovered after you delete them because they're tied to your
 # infrastructure. If you really want to exclude those from monitoring and reports, ignoring is the way to go.
