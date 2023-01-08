@@ -218,10 +218,11 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def add_assets(self, assets):
-        postdata = {'api_key': self.api_key, 'assets': assets}
+    def add_assets(self, assets, extract_domains=False):
+        postdata = {'api_key': self.api_key, 'assets': assets, 'extract_domains': extract_domains}
         response = requests.post(self.base_url + "add_assets", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
+        print(response.text)
         results = json.loads(response.text)
         if results["error"]:
             raise Exception(results['error'])
@@ -239,8 +240,8 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def delete_all_data(self, admincode):
-        postdata = {"api_key": self.api_key, "admincode": admincode}
+    def delete_all_data(self, admincode, save_system_stats=False):
+        postdata = {"api_key": self.api_key, "admincode": admincode, "save_system_stats": save_system_stats}
         response = requests.post(self.base_url + "delete_all_my_data", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)

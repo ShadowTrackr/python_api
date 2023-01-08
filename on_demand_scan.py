@@ -1,8 +1,5 @@
 from shadowtrackr import ShadowTrackr
 from time import sleep
-from PIL import Image
-from io import BytesIO
-
 
 API_KEY = "ddb41951a4d2c61df93346fa9037f029"
 ADMINCODE = "87687bdb86ad1b1581ab39f9c198cbd4"
@@ -15,8 +12,11 @@ st = ShadowTrackr(api_key=API_KEY)
 #st.delete_all_data(admincode=ADMINCODE)
 
 # Add some assets to seed the discovery. You can mix and match urls and ips
-assets = ["shadowtrackr.com", "139.162.214.30"]
-st.add_assets(assets)
+assets = ["www.shadowtrackr.com", "139.162.214.30"]
+# The extract domains flag will extract shadowtrackr.com and add it too. You get the same effect if you just
+# add shadowtrackr.com. If you only add the sudbomain url www.shadowtrackr.com and not set this flag,
+# the domain shadowtrackr.com will NOT be added
+st.add_assets(assets, extract_domains=True)
 
 # Now allow some time to discover assets
 i = 15  # We should have some data to play with after 30m, so bail out
@@ -43,9 +43,6 @@ print("Websites (should be >= 6 ): " + str(len(websites)))
 print("Certificates (should be >= 4): " + str(len(certificates)))
 print("Dns records (should be >= 15): " + str(len(dns)))
 
-# now get your Attack Surface Graph as a png file
-img = Image.open(BytesIO(st.get_graph()))
-img.save("Attack Surface Graph.png", "PNG")
 
 # You can ignore urls. Some will keep getting discovered after you delete them because they're tied to your
 # infrastructure. If you really want to exclude those from monitoring and reports, ignoring is the way to go.
