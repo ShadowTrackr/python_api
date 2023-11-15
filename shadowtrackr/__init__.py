@@ -313,3 +313,36 @@ class ShadowTrackr(object):
             raise Exception(results['error'])
         else:
             return results["data"]
+
+    def create_organization(self, name, groupcode):
+        # you can only use this if you have a groupcode, requires a custom subscription
+        postdata = {"api_key": self.api_key, "name": name, "groupcode": groupcode}
+        response = requests.post(self.base_url + "create_organization", data=json.dumps(postdata).encode('utf-8'),
+                                 proxies=self.proxies)
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def get_active_organizations(self, groupcode):
+        # you can only use this if you have a groupcode, requires a custom subscription
+        postdata = {"api_key": self.api_key, "groupcode": groupcode}
+        response = requests.post(self.base_url + "active_organizations", data=json.dumps(postdata).encode('utf-8'),
+                                 proxies=self.proxies)
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def delete_organization(self, organization_id, groupcode):
+        # you can only use this if you have a groupcode, requires a custom subscription
+        postdata = {"api_key": self.api_key, "organization_id": organization_id, "groupcode": groupcode}
+        response = requests.post(self.base_url + "delete_organization", data=json.dumps(postdata).encode('utf-8'),
+                                 proxies=self.proxies)
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]

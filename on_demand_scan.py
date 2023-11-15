@@ -38,10 +38,10 @@ suggestions = st.get_suggestions()
 dns = st.get_dns()
 
 print("Initial scan on ShadowTrackr found: ")
-print("Hosts (should be >= 4): " + str(len(hosts)))
-print("Websites (should be >= 6 ): " + str(len(websites)))
-print("Certificates (should be >= 4): " + str(len(certificates)))
-print("Dns records (should be >= 15): " + str(len(dns)))
+print("Hosts: " + str(len(hosts)))
+print("Websites: " + str(len(websites)))
+print("Certificates: " + str(len(certificates)))
+print("Dns records: " + str(len(dns)))
 
 
 # You can ignore urls. Some will keep getting discovered after you delete them because they're tied to your
