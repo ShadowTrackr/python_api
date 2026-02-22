@@ -5,7 +5,7 @@ import json
 class ShadowTrackr(object):
     def __init__(self, api_key):
         self.api_key = api_key
-        self.base_url = "https://shadowtrackr.com/api/v3/"
+        self.base_url = "https://backend.shadowtrackr.com/api/v3/"
         self.proxies = {}
 
     def set_proxy(self, proxy):
@@ -222,7 +222,6 @@ class ShadowTrackr(object):
         postdata = {'api_key': self.api_key, 'assets': assets, 'extract_domains': extract_domains}
         response = requests.post(self.base_url + "add_assets", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
-        print(response.text)
         results = json.loads(response.text)
         if results["error"]:
             raise Exception(results['error'])
@@ -233,6 +232,26 @@ class ShadowTrackr(object):
         postdata = {'api_key': self.api_key, "assets": assets, "timeline": timeline, "related": related,
                     "include_hosts": include_hosts}
         response = requests.post(self.base_url + "remove_assets", data=json.dumps(postdata).encode('utf-8'),
+                                 proxies=self.proxies)
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def add_tags(self, assets:list, tags:list, inherit:bool=True):
+        postdata = {'api_key': self.api_key, 'assets': assets, 'tags': tags, 'inherit': inherit}
+        response = requests.post(self.base_url + "add_tags", data=json.dumps(postdata).encode('utf-8'),
+                                 proxies=self.proxies)
+        results = json.loads(response.text)
+        if results["error"]:
+            raise Exception(results['error'])
+        else:
+            return results["data"]
+
+    def remove_tags(self, assets:list, tags:list, inherit:bool=True):
+        postdata = {'api_key': self.api_key, 'assets': assets, 'tags': tags, 'inherit': inherit}
+        response = requests.post(self.base_url + "remove_tags", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
         if results["error"]:
