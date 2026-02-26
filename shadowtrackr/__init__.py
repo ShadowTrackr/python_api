@@ -205,9 +205,6 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def get_graph(self, delay=None, name=None):
-        print('get_graph is no longer supported. See API documentation for details.')
-
     def get_assets(self):
         postdata = {"api_key": self.api_key}
         response = requests.post(self.base_url + "assets", data=json.dumps(postdata).encode('utf-8'),
@@ -334,7 +331,7 @@ class ShadowTrackr(object):
             return results["data"]
 
     def create_organization(self, name, groupcode):
-        # you can only use this if you have a groupcode, requires a custom subscription
+        # you can only use this if you have a multi-tenant account
         postdata = {"api_key": self.api_key, "name": name, "groupcode": groupcode}
         response = requests.post(self.base_url + "create_organization", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
@@ -344,9 +341,9 @@ class ShadowTrackr(object):
         else:
             return results["data"]
 
-    def get_active_organizations(self, groupcode):
-        # you can only use this if you have a groupcode, requires a custom subscription
-        postdata = {"api_key": self.api_key, "groupcode": groupcode}
+    def get_active_organizations(self, groupcode, full=False):
+        # you can only use this if you have a multi-tenant account
+        postdata = {"api_key": self.api_key, "groupcode": groupcode, "full": full}
         response = requests.post(self.base_url + "active_organizations", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
@@ -356,7 +353,7 @@ class ShadowTrackr(object):
             return results["data"]
 
     def delete_organization(self, organization_id, groupcode):
-        # you can only use this if you have a groupcode, requires a custom subscription
+        # you can only use this if you have a multi-tenant account
         postdata = {"api_key": self.api_key, "organization_id": organization_id, "groupcode": groupcode}
         response = requests.post(self.base_url + "delete_organization", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)

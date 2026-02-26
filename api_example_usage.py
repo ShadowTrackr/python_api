@@ -1,8 +1,8 @@
 from shadowtrackr import ShadowTrackr
 from pprint import pprint
 
-API_KEY = "ddb41951a4d2c61df93346fa9037f029"
-ADMINCODE = "87687bdb86ad1b1581ab39f9c198cbd4"
+API_KEY = "CHANGEME"
+ADMINCODE = "CHANGEME"
 
 st = ShadowTrackr(api_key=API_KEY)
 
