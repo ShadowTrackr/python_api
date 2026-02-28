@@ -26,6 +26,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "timeline", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -40,6 +42,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "hosts", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -60,6 +64,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "websites", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -78,6 +84,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "certificates", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -102,6 +110,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "exposed_email_addresses", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -112,6 +122,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "suggestions", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -126,6 +138,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "whois", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -144,6 +158,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "dns", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -156,6 +172,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "urls", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -168,6 +186,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "subnets", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -180,6 +200,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "domains", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -190,6 +212,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "cloud_providers", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -200,6 +224,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "remote_login_services", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -210,6 +236,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "assets", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -220,6 +248,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "add_assets", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -231,6 +261,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "remove_assets", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -241,6 +273,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "add_tags", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -251,6 +285,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "remove_tags", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -261,6 +297,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "delete_all_my_data", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -271,6 +309,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "ignore_urls", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -281,6 +321,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "unignore_urls", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -291,6 +333,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "software", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -305,6 +349,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "blacklisted_assets", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -315,6 +361,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "initial_scan_progress", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -325,6 +373,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "query", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -336,6 +386,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "create_organization", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -347,6 +399,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "active_organizations", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
@@ -358,6 +412,8 @@ class ShadowTrackr(object):
         response = requests.post(self.base_url + "delete_organization", data=json.dumps(postdata).encode('utf-8'),
                                  proxies=self.proxies)
         results = json.loads(response.text)
+        if 'results' in results:
+            print("ShadowTrackr: " + results['results'].replace("\n", "\n\t"))
         if results["error"]:
             raise Exception(results['error'])
         else:
