@@ -5,11 +5,11 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name='shadowtrackr',
-    version='4.8',
+    version='4.10',
     packages=setuptools.find_packages(),
     url='https://github.com/shadowtrackr/python_API',
     license='MIT',
-    author=' Bas van Schaik',
+    author='Bas van Schaik',
     author_email='bas@shadowtrackr.com',
     long_description=long_description,
     long_description_content_type="text/markdown",

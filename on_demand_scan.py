@@ -20,7 +20,7 @@ assets = ["www.shadowtrackr.com", "91.98.127.83"]
 st.add_assets(assets, extract_domains=True)
 
 # Now allow some time to discover assets
-i = 15  # We should have some data to play with after 30m, so bail out
+i = 5  # We should have some data to play with after 30m, so bail out
 while i > 0:
     sleep(60)
     status = st.check_initial_scan_progress()
