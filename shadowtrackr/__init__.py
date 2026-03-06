@@ -210,7 +210,6 @@ class ShadowTrackr(object):
                 results['results'] = results['results'].replace("\n", "\n\t")
             else:
                 results['results'] = str(results['results'])
-            print("ShadowTrackr: " + results['results'])
         if results["error"]:
             raise Exception(results['error'])
         else:
