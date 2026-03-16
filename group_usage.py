@@ -20,13 +20,13 @@ st_new_org.add_assets("shadowtrackr.com")
 
 sleep(600)
 
-websites = st_new_org.get_websites()
+websites = st_new_org.websites()
 print("Websites found for the new organization:")
 pprint(websites)
 
 sleep(3)
 print("The list off currently active organizations in the group: ")
-pprint(st_group.get_active_organizations(GROUPCODE, full=True))
+pprint(st_group.organizations(GROUPCODE, full=True))
 
 # delete the new organization from the group
 sleep(3)

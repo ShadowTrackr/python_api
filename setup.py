@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name='shadowtrackr',
-    version='4.11',
+    version='4.2',
     packages=setuptools.find_packages(),
     url='https://github.com/shadowtrackr/python_API',
     license='MIT',
@@ -13,7 +13,7 @@ setuptools.setup(
     author_email='bas@shadowtrackr.com',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    description='A python API for ShadowTrackr',
+    description='A python API module for ShadowTrackr',
     install_requires=[
          'requests'
       ]
