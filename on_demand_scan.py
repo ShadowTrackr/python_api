@@ -9,7 +9,7 @@ st = ShadowTrackr(api_key=API_KEY)
 ###
 # CAUTION: only uncomment this if you know what you are doing.
 # It will delete ALL your assets and you'll start with a clean slate.
-st.delete_all_my_data(admincode=ADMINCODE)
+#st.delete_all_my_data(admincode=ADMINCODE)
 
 # Add some assets to seed the discovery. You can mix and match urls and ips
 assets = ["www.shadowtrackr.com", "91.98.127.83"]
@@ -20,7 +20,7 @@ assets = ["www.shadowtrackr.com", "91.98.127.83"]
 st.add_assets(assets, extract_domains=True)
 
 # Now allow some time to discover assets
-i = 5  # We should have some data to play with after 30m, so bail out
+i = 5  # We should have some data to play with after 30m
 while i > 0:
     sleep(60)
     status = st.initial_scan_progress()

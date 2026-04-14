@@ -1,5 +1,5 @@
 from shadowtrackr import ShadowTrackr
-from pprint import pprint
+import json
 
 API_KEY = "CHANGEME"
 ADMINCODE = "CHANGEME"
@@ -7,26 +7,34 @@ ADMINCODE = "CHANGEME"
 st = ShadowTrackr(api_key=API_KEY)
 
 # More information about the Data Model and Query language::
-# https://test.shadowtrackr.com/docs/2-Data-Model
-# https://test.shadowtrackr.com/docs/3-Search-and-Queries
+# https://shadowtrackr.com/docs/
 
+print("# Certificate Issuers")
 certificate_issuers = st.query("index=certificates by issuer earliest=-10d")
-pprint(certificate_issuers)
+print(json.dumps(certificate_issuers, indent=2))
+print("###\n")
 
-problem_hosts = st.query("index=hosts problem=yes earliest=-1m")
-pprint(problem_hosts)
+print("# Problem hosts")
+problem_hosts = st.query("index=hosts problem=true earliest=-1m")
+print(json.dumps(problem_hosts, indent=2))
+print("###\n")
 
+print("# Hosts with RDP open")
 hosts_with_rdp_open = st.query("index=hosts ports=3389")
-pprint(hosts_with_rdp_open)
+print(json.dumps(hosts_with_rdp_open, indent=2))
+print("###\n")
 
+print("# DNS SPF Records")
 all_spf_records = st.query("index=dns rrtype=txt rrdata=\"*spf*\"")
-pprint(all_spf_records)
+print(json.dumps(all_spf_records, indent=2))
+print("###\n")
 
+print("# Websites running nginx")
 websites_on_nginx = st.query("index=websites https_server=*nginx*")
-pprint(websites_on_nginx)
+print(json.dumps(websites_on_nginx, indent=2))
+print("###\n")
 
+print("# Good certificates")
 good_certificates = st.query("index=certificates grade=A earliest=-1m")
-pprint(good_certificates)
-
-all_whois_records = st.query("index=whois")
-pprint(all_whois_records)
+print(json.dumps(good_certificates, indent=2))
+print("###\n")

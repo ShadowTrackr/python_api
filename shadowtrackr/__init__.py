@@ -306,6 +306,14 @@ class ShadowTrackr(object):
         postdata = {}
         return self.get_data_from_api("suppliers", postdata)
 
+    def internet_standards(self):
+        postdata = {}
+        return self.get_data_from_api("internet_standards", postdata)
+
+    def cves_assets(self):
+        postdata = {}
+        return self.get_data_from_api("cves_assets", postdata)
+
     def get_assets(self):
         if not self.api_v3:
             print("Warning: this function is deprecated, use st.assets()\n")
