@@ -384,8 +384,9 @@ class ShadowTrackr(object):
         postdata = {"api_key": self.api_key, "admincode": admincode, "save_system_stats": save_system_stats}
         return self.get_data_from_api_v3("delete_all_my_data", postdata)
 
-    def delete_all_my_data(self, admincode: str, save_system_stats: bool = False):
-        postdata = {"admincode": admincode, "save_system_stats": save_system_stats}
+    def delete_all_my_data(self, admincode: str, include_settings: bool = True, save_system_stats: bool = False):
+        postdata = {"admincode": admincode, "save_system_stats": save_system_stats,
+                    "include_settings": include_settings}
         return self.get_data_from_api("delete_all_my_data", postdata)
 
     def check_initial_scan_progress(self):
