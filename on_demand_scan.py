@@ -20,7 +20,7 @@ assets = ["www.shadowtrackr.com", "91.98.127.83"]
 st.add_assets(assets, extract_domains=True)
 
 # Now allow some time to discover assets
-i = 5  # We should have some data to play with after 30m
+i = 20  # We should have some data to play with after 30m
 while i > 0:
     sleep(60)
     status = st.initial_scan_progress()
@@ -28,7 +28,8 @@ while i > 0:
     # This is the "popcorn" method. If no new assets are popping up, then the first round of scanning must be done.
     # Note that after this ShadowTrackr will continuously keep scanning your assets.
     # New assets might be found tomorrow or next week
-    if i > 5 and status.get("total_assets") > 0 and status.get("scan_activity_in_last_5m") == 0:
+    data = status.get("data")
+    if data and i > 5 and data.get("total_assets", 0) > 0 and data.get("scan_activity_in_last_5m") == 0:
         break
     i -= 1
 

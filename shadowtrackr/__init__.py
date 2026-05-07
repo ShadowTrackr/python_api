@@ -442,6 +442,14 @@ class ShadowTrackr(object):
             postdata = {"oid": oid, "groupcode": groupcode}
             return self.get_data_from_api("delete_organization", postdata)
 
+    def add_custom_id(self, assets: list[str], custom_id: str, inherit: bool = True):
+        postdata = {"assets": assets, "custom_id": custom_id, "inherit": inherit}
+        return self.get_data_from_api("add_custom_id", postdata)
+
+    def delete_custom_id(self, assets: list[str], custom_id: str, inherit: bool = True):
+        postdata = {"assets": assets, "custom_id": custom_id, "inherit": inherit}
+        return self.get_data_from_api("delete_custom_id", postdata)
+
     def get_data_from_api_v3(self, endpoint: str, postdata: dict):
         response = requests.post(self.base_url + "v3/" + endpoint, data=json.dumps(postdata).encode("utf-8"),
                                  proxies=self.proxies)

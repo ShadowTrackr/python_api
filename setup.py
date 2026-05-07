@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name='shadowtrackr',
-    version='5.4',
+    version='5.5',
     packages=setuptools.find_packages(),
     url='https://github.com/shadowtrackr/python_API',
     license='MIT',
